@@ -8,7 +8,7 @@ interface Inputs {
 }
 
 export default function Generator() {
-  const [clientURL, setClientURL] = React.useState(null);
+  const [clientURL, setClientURL] = React.useState<string | null>(null);
 
   const {
     register,
@@ -18,8 +18,9 @@ export default function Generator() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = data => {
-    const encrypted = CryptoJS.AES.encrypt(data.clientId, process.env.NEXT_PUBLIC_SECRET_ENC_KEY);
-    const encoded = encodeURIComponent(encrypted);
+    const secretKey: any = process.env.NEXT_PUBLIC_SECRET_ENC_KEY;
+    const encrypted = CryptoJS.AES.encrypt(data.clientId, secretKey);
+    const encoded = encodeURIComponent(encrypted.toString());
 
     if (typeof window !== 'undefined') {
       const path = location.protocol + '//' + location.host + '/client/' + encoded;
