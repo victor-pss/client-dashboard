@@ -8,7 +8,7 @@ import Loading from '../../components/Loading';
 async function fetchData(url: string): Promise<any> {
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data.data);
+  // console.log(data.data);
   return data.data;
 }
 
@@ -62,8 +62,8 @@ export default function Home({ params }: any) {
         throw new Error(`Secret encrytion key is not defined`);
       }
       const decrypted = CryptoJS.AES.decrypt(clientId, secretKey);
-      console.log('decoded');
-      console.log(decrypted.toString(CryptoJS.enc.Utf8));
+      // console.log('decoded');
+      // console.log(decrypted.toString(CryptoJS.enc.Utf8));
       setClientIdPlain(decrypted.toString(CryptoJS.enc.Utf8));
     }
   }, [clientId]);
@@ -125,7 +125,7 @@ export default function Home({ params }: any) {
   }, [taskData]);
 
   return (
-    <Nav clientId={clientIdPlain ? clientIdPlain : ""} projectManager={projectManager ? projectManager : ""}>
+    <Nav clientId={clientIdPlain ? clientIdPlain : ""} projectManager={projectManager ? projectManager : ""} title='Project Dashboard'>
       {isLoading ? (
         <div className="w-6/12 text-center m-auto mt-5">
           <Loading />
