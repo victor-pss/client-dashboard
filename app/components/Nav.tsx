@@ -12,8 +12,12 @@ export default function Nav({ children, clientId, projectManager, title }: { chi
           <Image className="invert brightness-0" src={Logo} alt="Plastic Surgery Studios Logo" height={100} width={100} />
         </div>
         <div className="p-3 flex items-center space-x-4">
-          <span className="align-middle text-gray-400 font-normal">Client: <span className="text-white font-bold">{clientId}</span></span>
-          <span className="align-middle text-gray-400 font-normal">Your Project Manager: <span className="text-white font-bold">{projectManager}</span></span>
+          {clientId !== '' ? (
+            <span className="align-middle text-gray-400 font-normal">Client: <span className="text-white font-bold">{clientId}</span></span>
+          ) : null}
+          {projectManager !== '' ? (
+            <span className="align-middle text-gray-400 font-normal">Your Project Manager: <span className="text-white font-bold">{projectManager}</span></span>
+          ) : null}
         </div>
       </nav >
       <div>
