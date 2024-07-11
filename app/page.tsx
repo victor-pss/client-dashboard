@@ -11,8 +11,8 @@ export default function Home() {
           </video>
         </div>
         <div className="absolute top-1/3 left-1/3 w-1/3 p-16 bg-gradient-to-b from-[rgba(0,36,192,.199)] to-[#0024c0]">
-          <h1 className="text-5xl text-center font-bold font-serif">Plastic Surgery Studios Projects</h1>
-          <p className="text-lg text-center mt-5 font-[oswald,sans-serif]">If you have stumbled upon this page, please contact your project manager to guide you to your project page.</p>
+          <h1 className="text-5xl text-center font-bold font-serif">PSS Projects</h1>
+          <p className="text-lg text-center mt-5 font-[oswald,sans-serif]">Whoops! If you've stumbled upon this page, please reach out to your Project Manager for help accessing your project page.</p>
         </div>
       </Nav>
     </main>
