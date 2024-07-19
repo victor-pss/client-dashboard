@@ -6,7 +6,7 @@ import Nav from '../../components/Nav';
 import Loading from '../../components/Loading';
 
 async function fetchData(url: string): Promise<any> {
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: 'force-cache', next: { revalidate: 300 } });
   const data = await response.json();
   // console.log(data.data);
   return data.data;

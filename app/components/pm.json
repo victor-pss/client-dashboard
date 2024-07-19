@@ -1,0 +1,59 @@
+{
+    "projectManagers": [
+        {
+            "name": "Carrie Sanders",
+            "email": "carrie.sanders@plasticsurgerystudios.com",
+            "phone": "9097588355",
+            "phoneH": "909.758.8355"
+        },
+        {
+            "name": "Anna Powers",
+            "email": "anna.powers@plasticsurgerystudios.com",
+            "phone": "9097588315",
+            "phoneH": "909.758.8315"
+            
+        }, 
+        {
+            "name": "Coty Watson",
+            "email": "coty.watson@plasticsurgerystudios.com",
+            "phone": "9097588387",
+            "phoneH": "909.758.8387"
+            
+        }, 
+        {
+            "name": "Kevin Boddy",
+            "email": "kevin.boddy@plasticsurgerystudios.com",
+            "phone": "9097588229",
+            "phoneH": "909.758.8229"
+            
+        }, 
+        {
+            "name": "Lani Patrick",
+            "email": "lani.patrick@plasticsurgerystudios.com",
+            "phone": "9097588382",
+            "phoneH": "909.758.8382"
+            
+        }, 
+        {
+            "name": "Brian Samarripa",
+            "email": "brian.samarripa@plasticsurgerystudios.com",
+            "phone": "9097588350",
+            "phoneH": "909.758.8350"
+            
+        }, 
+        {
+            "name": "Nely Garcia",
+            "email": "nely.garcia@plasticsurgerystudios.com",
+            "phone": "9097588317",
+            "phoneH": "909.758.8317"
+            
+        }, 
+        {
+            "name": "Gabrielle Woltz",
+            "email": "gabrielle.woltz@plasticsurgerystudios.com",
+            "phone": "9097588339",
+            "phoneH": "909.758.8339"
+            
+        }, 
+    ]
+}
