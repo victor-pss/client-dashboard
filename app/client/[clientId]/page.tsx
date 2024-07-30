@@ -31,13 +31,32 @@ interface FolderData {
   customFields: CustomField[];
 }
 
-// interface Task {
-//   id: string;
-//   status: string;
-//   description: string;
-//   title: string;
-//   customFields: CustomField[];
-// }
+function setLocalStorageWithExpiry(key: string, value: string, ttl: number): void {
+  const now = new Date();
+
+  const item = {
+    value: value,
+    expiry: now.getTime() + ttl,
+  }
+  localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getLocalStorageWithExpiry(key: string): string {
+  const value = localStorage.getItem(key);
+
+  if (!value) {
+    return 'null';
+  }
+
+  const item = JSON.parse(value);
+  const now = new Date();
+
+  if (now.getTime() > item.expiry) {
+    localStorage.removeItem(key);
+    return 'null'
+  }
+  return item.value;
+}
 
 export default function Home({ params }: any) {
   const [clientId, setClientId] = React.useState<string | null>(null);
@@ -50,8 +69,18 @@ export default function Home({ params }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    const decoded = decodeURIComponent(params.clientId);
+    let decoded;
+
+    if (localStorage.getItem("clientId") !== null) {
+      decoded = getLocalStorageWithExpiry("clientId");
+      console.log("grabbed clientId from localStorage:", decoded);
+    } else {
+      decoded = decodeURIComponent(params.clientId);
+      setLocalStorageWithExpiry("clientId", decoded, 86400);
+    }
     setClientId(decoded);
+
+    // setPM(getServerSideJSON());
   }, []);
 
   React.useEffect(() => {
