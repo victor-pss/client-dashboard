@@ -33,29 +33,39 @@ interface FolderData {
 
 function setLocalStorageWithExpiry(key: string, value: string, ttl: number): void {
   const now = new Date();
-
+  const milli = ttl * 1000;
   const item = {
     value: value,
-    expiry: now.getTime() + ttl,
+    expiry: now.getTime() + milli,
   }
   localStorage.setItem(key, JSON.stringify(item));
 }
 
-function getLocalStorageWithExpiry(key: string): string {
+function getLocalStorageWithExpiry(key: string): any {
   const value = localStorage.getItem(key);
 
   if (!value) {
-    return 'null';
+    return null;
   }
 
   const item = JSON.parse(value);
+  let val;
+  if (item.value[0] === "[") {
+    val = JSON.parse(item.value);
+  } else {
+    val = item.value;
+  }
+
+  console.log("item:", item);
+  console.log("val:", val);
+
   const now = new Date();
 
-  if (now.getTime() > item.expiry) {
+  if (now.getTime() >= item.expiry) {
     localStorage.removeItem(key);
-    return 'null'
+    return null
   }
-  return item.value;
+  return val;
 }
 
 export default function Home({ params }: any) {
@@ -69,15 +79,7 @@ export default function Home({ params }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
-    let decoded;
-
-    if (localStorage.getItem("clientId") !== null) {
-      decoded = getLocalStorageWithExpiry("clientId");
-      console.log("grabbed clientId from localStorage:", decoded);
-    } else {
-      decoded = decodeURIComponent(params.clientId);
-      setLocalStorageWithExpiry("clientId", decoded, 86400);
-    }
+    const decoded = decodeURIComponent(params.clientId);
     setClientId(decoded);
 
     // setPM(getServerSideJSON());
@@ -111,11 +113,26 @@ export default function Home({ params }: any) {
         try {
           const data = await fetchData(url);
           setFolderData(data as FolderData[]);
+          setLocalStorageWithExpiry("folderData", JSON.stringify(data), 300);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
       }
-      fetchDataAndSetState();
+
+      if (localStorage.getItem("folderData") !== null) {
+        let decoded = getLocalStorageWithExpiry("folderData");
+        console.log("folderData:", decoded);
+        if (decoded === null) {
+          fetchDataAndSetState();
+          console.log("folderData - localStorage null");
+        } else {
+          setFolderData(decoded as FolderData[]);
+          console.log("folderData - no localStorage");
+        }
+      } else {
+        fetchDataAndSetState();
+        console.log("folderData - localStorage none");
+      }
     }
   }, [clientIdPlain]);
 
@@ -127,12 +144,24 @@ export default function Home({ params }: any) {
         try {
           const data = await fetchData(url);
           setTaskData(data as TaskData[]);
+          setLocalStorageWithExpiry("taskData", JSON.stringify(data), 300);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
       }
-      getFolderDataAndSetState();
+
+      if (localStorage.getItem("taskData") !== null) {
+        const decoded = getLocalStorageWithExpiry("taskData");
+        if (decoded === null) {
+          getFolderDataAndSetState();
+        } else {
+          setTaskData(decoded as TaskData[]);
+          setIsLoading(false);
+        }
+      } else {
+        getFolderDataAndSetState();
+      }
 
       folderData[0].customFields.forEach((field: CustomField) => {
         if (field.id === 'IEACF6UMJUADCGYR') {
