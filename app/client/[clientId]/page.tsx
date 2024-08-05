@@ -190,11 +190,11 @@ export default function Home({ params }: any) {
         </div>
       ) : (
 
-        <div className="pt-4 w-6/12 m-auto">
+        <div className="pt-4 w-8/12 m-auto">
 
           <div className="flex flex-row gap-4 m-auto justify-center">
-            <div>
-              <p className="text-xl font-semibold text-gray-800 text-center mb-2">Active Tasks :</p>
+            <div className="w-full">
+              <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Active Tasks :</p>
               {
                 activeTasks && activeTasks.length > 0 ? (
                   activeTasks.map((task: TaskData) => (
@@ -213,8 +213,8 @@ export default function Home({ params }: any) {
                 )
               }
             </div >
-            <div>
-              <p className="text-xl font-semibold text-gray-800 text-center mb-2">Completed Tasks:</p>
+            <div className="w-full">
+              <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Completed Tasks:</p>
               {completedTasks && completedTasks.length > 0 ? (
                 completedTasks.map((task: TaskData) => (
                   <Card
