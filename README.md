@@ -1,3 +1,7 @@
+// TODO: client link - Pizza Tracker
+// TODO: client link - content block width
+// TODO: client link - content block links need to open in new window
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
