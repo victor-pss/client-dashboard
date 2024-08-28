@@ -4,7 +4,7 @@ import CryptoJS from 'crypto-js';
 import Card from '../../components/Card';
 import Nav from '../../components/Nav';
 import Loading from '../../components/Loading';
-import Pizza from '../../components/pizza.tsx';
+import Pizza from '../../components/pizza';
 
 async function fetchData(url: string): Promise<any> {
   const response = await fetch(url, { cache: 'force-cache', next: { revalidate: 300 } });
