@@ -68,7 +68,7 @@ export default function Pizza({progress}: {progress: string}) {
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
               <NewSVG />
             </span>
-            <span className='text-center text-black'>New</span>
+            <span className='text-black w-full text-center'>New</span>
           </div>
         </li>
         <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
@@ -76,7 +76,7 @@ export default function Pizza({progress}: {progress: string}) {
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
               <BrandingSVG />
             </span>
-            <span className='absolute text-center text-black mt-20 ml-2'>Branding</span>
+            <span className='absolute text-center text-black lg:mt-20 lg:ml-2 mt-10'>Branding</span>
           </div>
         </li>
         <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
@@ -84,7 +84,7 @@ export default function Pizza({progress}: {progress: string}) {
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
               <BuildoutSVG />
             </span>
-            <span className='absolute text-center text-black mt-20 ml-2'>Buildout</span>
+            <span className='absolute text-center text-black lg:mt-20 lg:ml-2 mt-10'>Buildout</span>
           </div>
         </li>
         <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
@@ -92,7 +92,7 @@ export default function Pizza({progress}: {progress: string}) {
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
               <ReviewsSVG />
             </span>
-            <span className='absolute text-center text-black mt-20 ml-3'>Reviews</span>
+            <span className='absolute text-center text-black lg:mt-20 lg:ml-3 mt-10'>Reviews</span>
           </div>
         </li>
         <li className="flex items-center after:content-none">
@@ -100,7 +100,7 @@ export default function Pizza({progress}: {progress: string}) {
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
               <LiveSVG />
             </span>
-            <span className='absolute text-center text-black mt-20 ml-6'>Live</span>
+            <span className='absolute text-center text-black lg:mt-20 lg:ml-6 mt-10'>Live</span>
           </div>
         </li>
       </ol>

@@ -210,7 +210,7 @@ export default function Home({ params }: any) {
       ) : (
 
         <div className="pt-4 w-8/12 m-auto">
-          <Pizza progress={projectPhase} />
+          <Pizza progress={projectPhase ? projectPhase : ""} />
           <div className="flex flex-row gap-4 m-auto mt-2 justify-center">
             <div className="w-full">
               <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Active Tasks :</p>
