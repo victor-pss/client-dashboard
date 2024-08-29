@@ -22,11 +22,11 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
-  function BrandingSVG() {
+  function DesignSVG() {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
         {/*<!--!Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc.-->*/}
-        <path d="M345.9 320l-64 0 20.9-71L263 209.3 160.4 239.5c.8-16.3 2.8-32.1 5.7-47.5l179.7 0c3.9 20.5 6.1 41.9 6.1 64s-2.2 43.5-6.1 64zM128.1 249L1.8 286.1C.6 276.2 0 266.2 0 256c0-22.1 2.8-43.5 8.1-64l125.6 0c-3.2 18.3-5.2 37.3-5.5 57zM234.5 481.1l38-129.1 65.9 0c-11.4 40.2-28.4 75.9-45.8 105.4c-13 21.9-25.9 40-36.5 53.5c-6.4-8.2-13.8-18.2-21.5-29.8zM384 256c0-22.1-2-43.5-5.6-64l125.6 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-125.6 0c3.6-20.5 5.6-41.9 5.6-64zm-12.6-96c-17-65.6-48.3-120-74-156.7c89.2 14.5 163 75.2 196 156.7l-122 0zm-197.7 0c11.4-40.2 28.4-75.9 45.8-105.4c13-21.9 25.9-40 36.5-53.5c10.5 13.5 23.5 31.6 36.5 53.5c17.4 29.4 34.5 65.1 45.8 105.4l-164.6 0zM214.6 3.3c-25.7 36.7-57 91-74 156.7l-122 0c33-81.5 106.7-142.2 196-156.7zM371.4 352l122 0c-33 81.5-106.7 142.2-196 156.7c25.7-36.7 57-91 74-156.7zM0 320l254.5-74.9 12.3 12.3L192 512l-48-96-1.4-1.4-96 96L1.4 465.4l96-96L96 368 0 320z"/>
+          <path d="M297.8 153.8L224 80 144 0 32 112 176 256c6.2 0 12.4 .4 18.4 1.2L297.8 153.8zM320 400l80 80 144 32L512 368l-89.8-89.8L318.8 381.6c.8 6 1.2 12.2 1.2 18.4zM535.6 119.6L575.2 80 496 .8 456.4 40.4 227.7 269.1l79.2 79.2L535.6 119.6zM205 291.8c-9.3-2.5-19-3.8-29-3.8c-61.9 0-112 50.1-112 112l0 48L0 448l0 64 176 0c61.9 0 112-50.1 112-112c0-10-1.3-19.8-3.8-29l.1-.1-79.2-79.2-.1 .1z"/>
       </svg>
 
     )
@@ -36,7 +36,7 @@ export default function Pizza({progress}: {progress: string}) {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 512">
         {/*<!--!Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc.-->*/}
-        <path d="M96 0l32 0L256 0l16.6 0 9.6 13.5 96 136 5.9 8.3 0 2.2 0 8 0 56 0 96L0 320 0 160l96 0L96 32 96 0zM239.4 64L160 64l0 96 147.2 0L239.4 64zM80 416c-8.8 0-16 7.2-16 16s7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L80 416zM0 432c0-44.2 35.8-80 80-80l256 0c44.2 0 80 35.8 80 80s-35.8 80-80 80L80 512c-44.2 0-80-35.8-80-80zM640 320l0 64 0 48c0 44.2-35.8 80-80 80l-112 0 0-48L576 336l0-208L416 288l0-128L576 0l64 0 0 320z"/>
+          <path d="M256 0L144 0C64.5 0 0 64.5 0 144l0 16 80-32 32 32 144 0 0-32 32 0 0 32 64 0L352 0 288 0l0 32-32 0 0-32zM96 512l128 0L208 192l-96 0L96 512zm320 0l32-96 32 96 160 0 0-192-288 0 0 192 64 0zM352 256l0 32 288 0 0-32-96-64L544 0 448 0l0 192-96 64zM496 64a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"/>
       </svg>
     )
   }
@@ -74,9 +74,9 @@ export default function Pizza({progress}: {progress: string}) {
         <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
           <div className='flex flex-col'>
             <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <BrandingSVG />
+              <DesignSVG />
             </span>
-            <span className='absolute text-center text-black lg:mt-20 lg:ml-2 mt-10'>Branding</span>
+            <span className='absolute text-center text-black lg:mt-20 lg:ml-3 mt-10'>Design</span>
           </div>
         </li>
         <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
