@@ -71,34 +71,23 @@ function getLocalStorageWithExpiry(key: string): any {
 }
 
 export default function Home({ params }: any) {
-  const [clientId, setClientId] = React.useState<string | null>(null);
-  const [clientIdPlain, setClientIdPlain] = React.useState<string | null>(null);
-  const [folderData, setFolderData] = React.useState<FolderData[]>([]);
-  const [projectManager, setProjectManager] = React.useState<string | null>(null);
-  const [taskData, setTaskData] = React.useState<TaskData[]>([]);
-  const [activeTasks, setActiveTasks] = React.useState<TaskData[]>([]);
-  const [completedTasks, setCompletedTasks] = React.useState<TaskData[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [projectPhases, setProjectPhases] = React.useState<{}>({});
-  const [projectPhase, setProjectPhase] = React.useState<string | null>(null);
+  const [clientId, setClientId] = React.useState<string | null>(null);              // encrypted Client ID
+  const [clientIdPlain, setClientIdPlain] = React.useState<string | null>(null);    // decrypted Client ID
+  const [folderData, setFolderData] = React.useState<FolderData[]>([]);             // Wrike folder data for Project Dashboard
+  const [projectManager, setProjectManager] = React.useState<string | null>(null);  // Project Manager from Wrike folder data
+  const [taskData, setTaskData] = React.useState<TaskData[]>([]);                   // Task data based on Wrike folder
+  const [activeTasks, setActiveTasks] = React.useState<TaskData[]>([]);             // Separated active tasks
+  const [completedTasks, setCompletedTasks] = React.useState<TaskData[]>([]);       // Separated completed tasks
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);                  // Loading state
+  const [projectPhase, setProjectPhase] = React.useState<string | null>(null);      // Current project phases based on Wrike folder data
+
+  const expiry = 0; // Local storage expiration (in seconds)
 
   React.useEffect(() => {
     const decoded = decodeURIComponent(params.clientId);
     setClientId(decoded);
 
-    // set project phases
-    setProjectPhases({
-      'New': 1,
-      'Assets': 2,
-      'Branding': 3,
-      'Concept - HP': 4,
-      'Buildout': 5,
-      'Population': 6,
-      'Client Review': 7,
-      'Reviews': 8,
-      'Live': 9
-      });
-    // setPM(getServerSideJSON());
+     //setPM(getServerSideJSON());
   }, []);
 
   React.useEffect(() => {
@@ -130,7 +119,7 @@ export default function Home({ params }: any) {
           const data = await fetchData(url);
           setFolderData(data as FolderData[]);
           console.log('folderData:', data);
-          setLocalStorageWithExpiry("folderData", JSON.stringify(data), 300);
+          setLocalStorageWithExpiry("folderData", JSON.stringify(data), expiry);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -161,7 +150,7 @@ export default function Home({ params }: any) {
         try {
           const data = await fetchData(url);
           setTaskData(data as TaskData[]);
-          setLocalStorageWithExpiry("taskData", JSON.stringify(data), 300);
+          setLocalStorageWithExpiry("taskData", JSON.stringify(data), expiry);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data:', error);

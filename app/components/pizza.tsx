@@ -2,8 +2,70 @@
 import * as React from 'react';
 
 export default function Pizza({progress}: {progress: string}) {
-  
+  const [projectPhases, setProjectPhases] = React.useState<string | null>(null);
+  const [currentPhase, setCurrentPhase] = React.useState<>(null);
+  const [pizzaTracker, setPizzaTracker] = React.useState<>([
+    {"svg": <NewSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"},
+    {"svg": <DesignSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <BuildoutSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <ReviewsSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <LiveSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"} 
+  ]); // initial pizza tracker values - icon, li classes, and span classes
 
+  React.useEffect(() => {
+    // set project phases
+    setProjectPhases({
+      'New': 1,
+      'Assets': 2,
+      'Branding': 3,
+      'Concept - HP': 4,
+      'Buildout': 5,
+      'Population': 6,
+      'Client Review': 7,
+      'Reviews': 8,
+      'Live': 9
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if(projectPhases !== null) {
+      setCurrentPhase(projectPhases[progress])
+    }
+  }, [projectPhases, progress])
+
+  // set the current pizza tracker state
+  React.useEffect(() => {
+    if(currentPhase !== null) {
+      let newArr = [...pizzaTracker] // copy pizzaTracker array
+      switch(currentPhase) {
+        case 9: {
+          newArr[4] = {"svg": <CheckMarkSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"} 
+
+          newArr[3] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+        }
+        case 8: {}
+        case 7: {
+          newArr[2] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+        }
+        case 6: {}
+        case 5: {
+          newArr[1] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+        }
+        case 4: {}
+        case 3: {}
+        case 2: {
+          newArr[0] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+        }
+        case 1: {
+          setPizzaTracker(newArr) // set new pizzaTracker values
+          break;
+        }
+        default: {break;}
+      }
+    }
+  }, [currentPhase])
+
+  // Check Mark SVG icon
   function CheckMarkSVG() {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 text-blue-600 lg:w-8 lg:h-8 dark:text-blue-300' fill='currentColor' viewBox="0 0 448 512">
@@ -13,6 +75,7 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
+  // New SVG icon
   function NewSVG() {
     return (
       <svg className='w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100' aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
@@ -22,6 +85,7 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
+  // Design SVG icon
   function DesignSVG() {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
@@ -32,6 +96,7 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
+  // Buildout SVG icon
   function BuildoutSVG() {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 512">
@@ -41,6 +106,7 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
+  // Reviews SVG icon
   function ReviewsSVG() {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 512">
@@ -50,6 +116,7 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
+  // Live SVG icon
   function LiveSVG() {
     return (
       <svg className="w-4 h-4 text-gray-500 lg:w-8 lg:h-8 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
@@ -59,46 +126,47 @@ export default function Pizza({progress}: {progress: string}) {
     )
   }
 
-  return (
 
+  return (
+    // Pizza Tracker format
     <div id='progress' className='mx-auto'>
       <ol className="flex ">
-        <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+        <li className={pizzaTracker[0].liClasses}>
           <div className='flex flex-col mt-6'>
-            <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <NewSVG />
+            <span className={pizzaTracker[0].spanClasses}>
+              {pizzaTracker[0].svg}
             </span>
             <span className='text-black w-full text-center'>New</span>
           </div>
         </li>
-        <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+        <li className={pizzaTracker[1].liClasses}>
           <div className='flex flex-col'>
-            <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <DesignSVG />
+            <span className={pizzaTracker[1].spanClasses}>
+              {pizzaTracker[1].svg}
             </span>
             <span className='absolute text-center text-black lg:mt-20 lg:ml-3 mt-10'>Design</span>
           </div>
         </li>
-        <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+        <li className={pizzaTracker[2].liClasses}>
           <div className='flex flex-col'>
-            <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <BuildoutSVG />
+            <span className={pizzaTracker[2].spanClasses}>
+              {pizzaTracker[2].svg}
             </span>
             <span className='absolute text-center text-black lg:mt-20 lg:ml-2 mt-10'>Buildout</span>
           </div>
         </li>
-        <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+        <li className={pizzaTracker[3].liClasses}>
           <div className='flex flex-col'>
-            <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <ReviewsSVG />
+            <span className={pizzaTracker[3].spanClasses}>
+              {pizzaTracker[3].svg}
             </span>
             <span className='absolute text-center text-black lg:mt-20 lg:ml-3 mt-10'>Reviews</span>
           </div>
         </li>
-        <li className="flex items-center after:content-none">
+        <li className={pizzaTracker[4].liClasses}>
           <div className='flex flex-col'>
-            <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0">
-              <LiveSVG />
+            <span className={pizzaTracker[4].spanClasses}>
+              {pizzaTracker[4].svg}
             </span>
             <span className='absolute text-center text-black lg:mt-20 lg:ml-6 mt-10'>Live</span>
           </div>
