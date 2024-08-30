@@ -63,7 +63,7 @@ export default function Pizza({progress}: {progress: string}) {
         default: {break;}
       }
     }
-  }, [currentPhase])
+  }, [currentPhase, pizzaTracker])
 
   // Check Mark SVG icon
   function CheckMarkSVG() {

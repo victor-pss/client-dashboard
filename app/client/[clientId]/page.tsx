@@ -88,7 +88,7 @@ export default function Home({ params }: any) {
     setClientId(decoded);
 
      //setPM(getServerSideJSON());
-  }, []);
+  }, [params.clientId]);
 
   React.useEffect(() => {
 
