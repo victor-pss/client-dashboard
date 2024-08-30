@@ -2,8 +2,8 @@
 import * as React from 'react';
 
 export default function Pizza({progress}: {progress: string}) {
-  const [projectPhases, setProjectPhases] = React.useState<string | null>(null);
-  const [currentPhase, setCurrentPhase] = React.useState<any>(null);
+  const [projectPhases, setProjectPhases] = React.useState<Record<string, number> | null>(null);
+  const [currentPhase, setCurrentPhase] = React.useState<number | null>(null);
   const [pizzaTracker, setPizzaTracker] = React.useState<any>([
     {"svg": <NewSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"},
     {"svg": <DesignSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
@@ -15,21 +15,21 @@ export default function Pizza({progress}: {progress: string}) {
   React.useEffect(() => {
     // set project phases
     setProjectPhases({
-      'New': 1,
-      'Assets': 2,
-      'Branding': 3,
-      'Concept - HP': 4,
-      'Buildout': 5,
-      'Population': 6,
-      'Client Review': 7,
-      'Reviews': 8,
-      'Live': 9
+      "New": 1,
+      "Assets": 2,
+      "Branding": 3,
+      "Concept - HP": 4,
+      "Buildout": 5,
+      "Population": 6,
+      "Client Review": 7,
+      "Reviews": 8,
+      "Live": 9
     });
   }, []);
 
   React.useEffect(() => {
-    if(projectPhases !== null) {
-      setCurrentPhase(projectPhases[progress])
+    if(projectPhases) {
+      setCurrentPhase(projectPhases[progress] || null)
     }
   }, [projectPhases, progress])
 
