@@ -5,11 +5,11 @@ export default function Pizza({progress}: {progress: string}) {
   const [projectPhases, setProjectPhases] = React.useState<Record<string, number> | null>(null);
   const [currentPhase, setCurrentPhase] = React.useState<number | null>(null);
   const [pizzaTracker, setPizzaTracker] = React.useState<any>([
-    {"svg": <NewSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"},
-    {"svg": <DesignSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
-    {"svg": <BuildoutSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
-    {"svg": <ReviewsSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
-    {"svg": <LiveSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"} 
+    {"svg": <NewSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center drop-shadow-lg drop-shadow-md w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"},
+    {"svg": <DesignSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <BuildoutSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <ReviewsSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"}, 
+    {"svg": <LiveSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-gray-100 rounded-full lg:h-20 lg:w-20 dark:bg-gray-700 shrink-0"} 
   ]); // initial pizza tracker values - icon, li classes, and span classes
 
   React.useEffect(() => {
@@ -39,22 +39,22 @@ export default function Pizza({progress}: {progress: string}) {
       let newArr = [...pizzaTracker] // copy pizzaTracker array
       switch(currentPhase) {
         case 9: {
-          newArr[4] = {"svg": <CheckMarkSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"} 
+          newArr[4] = {"svg": <CheckMarkSVG />, "liClasses": "flex items-center after:content-none", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"} 
 
-          newArr[3] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+          newArr[3] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
         }
         case 8: {}
         case 7: {
-          newArr[2] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+          newArr[2] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
         }
         case 6: {}
         case 5: {
-          newArr[1] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+          newArr[1] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
         }
         case 4: {}
         case 3: {}
         case 2: {
-          newArr[0] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
+          newArr[0] = {"svg": <CheckMarkSVG />, "liClasses": "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700", "spanClasses": "flex items-center justify-center drop-shadow-md w-10 h-10 bg-blue-100 rounded-full lg:h-20 lg:w-20 dark:bg-blue-700 shrink-0"}
         }
         case 1: {
           setPizzaTracker(newArr) // set new pizzaTracker values
@@ -129,7 +129,7 @@ export default function Pizza({progress}: {progress: string}) {
 
   return (
     // Pizza Tracker format
-    <div id='progress' className='mx-auto'>
+    <div id='progress' className='mx-auto px-2 pb-2 drop-shadow-[0px_10px_10px_rgba(192,192,192,0.9)]'>
       <ol className="flex ">
         <li className={pizzaTracker[0].liClasses}>
           <div className='flex flex-col mt-6'>
