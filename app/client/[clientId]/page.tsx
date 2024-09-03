@@ -4,11 +4,13 @@ import CryptoJS from 'crypto-js';
 import Card from '../../components/Card';
 import Nav from '../../components/Nav';
 import Loading from '../../components/Loading';
+import Pizza from '../../components/pizza';
 
 async function fetchData(url: string): Promise<any> {
   const response = await fetch(url, { cache: 'force-cache', next: { revalidate: 300 } });
   const data = await response.json();
   // console.log(data.data);
+  // console.log('nothing to see here');
   return data.data;
 }
 
@@ -69,21 +71,24 @@ function getLocalStorageWithExpiry(key: string): any {
 }
 
 export default function Home({ params }: any) {
-  const [clientId, setClientId] = React.useState<string | null>(null);
-  const [clientIdPlain, setClientIdPlain] = React.useState<string | null>(null);
-  const [folderData, setFolderData] = React.useState<FolderData[]>([]);
-  const [projectManager, setProjectManager] = React.useState<string | null>(null);
-  const [taskData, setTaskData] = React.useState<TaskData[]>([]);
-  const [activeTasks, setActiveTasks] = React.useState<TaskData[]>([]);
-  const [completedTasks, setCompletedTasks] = React.useState<TaskData[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [clientId, setClientId] = React.useState<string | null>(null);              // encrypted Client ID
+  const [clientIdPlain, setClientIdPlain] = React.useState<string | null>(null);    // decrypted Client ID
+  const [folderData, setFolderData] = React.useState<FolderData[]>([]);             // Wrike folder data for Project Dashboard
+  const [projectManager, setProjectManager] = React.useState<string | null>(null);  // Project Manager from Wrike folder data
+  const [taskData, setTaskData] = React.useState<TaskData[]>([]);                   // Task data based on Wrike folder
+  const [activeTasks, setActiveTasks] = React.useState<TaskData[]>([]);             // Separated active tasks
+  const [completedTasks, setCompletedTasks] = React.useState<TaskData[]>([]);       // Separated completed tasks
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);                  // Loading state
+  const [projectPhase, setProjectPhase] = React.useState<string | null>(null);      // Current project phases based on Wrike folder data
+
+  const expiry = 0; // Local storage expiration (in seconds)
 
   React.useEffect(() => {
     const decoded = decodeURIComponent(params.clientId);
     setClientId(decoded);
 
-    // setPM(getServerSideJSON());
-  }, []);
+     //setPM(getServerSideJSON());
+  }, [params.clientId]);
 
   React.useEffect(() => {
 
@@ -113,7 +118,8 @@ export default function Home({ params }: any) {
         try {
           const data = await fetchData(url);
           setFolderData(data as FolderData[]);
-          setLocalStorageWithExpiry("folderData", JSON.stringify(data), 300);
+          console.log('folderData:', data);
+          setLocalStorageWithExpiry("folderData", JSON.stringify(data), expiry);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -144,7 +150,7 @@ export default function Home({ params }: any) {
         try {
           const data = await fetchData(url);
           setTaskData(data as TaskData[]);
-          setLocalStorageWithExpiry("taskData", JSON.stringify(data), 300);
+          setLocalStorageWithExpiry("taskData", JSON.stringify(data), expiry);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -166,6 +172,8 @@ export default function Home({ params }: any) {
       folderData[0].customFields.forEach((field: CustomField) => {
         if (field.id === 'IEACF6UMJUADCGYR') {
           setProjectManager(field.value);
+        } else if (field.id === 'IEACF6UMJUAFJQ2D') {
+          setProjectPhase(field.value);
         }
       });
     }
@@ -191,8 +199,8 @@ export default function Home({ params }: any) {
       ) : (
 
         <div className="pt-4 w-8/12 m-auto">
-
-          <div className="flex flex-row gap-4 m-auto justify-center">
+          <Pizza progress={projectPhase ? projectPhase : ""} />
+          <div className="flex flex-row gap-4 m-auto mt-2 justify-center">
             <div className="w-full">
               <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Active Tasks :</p>
               {
