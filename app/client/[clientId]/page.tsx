@@ -81,7 +81,7 @@ export default function Home({ params }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);                  // Loading state
   const [projectPhase, setProjectPhase] = React.useState<string | null>(null);      // Current project phases based on Wrike folder data
 
-  const expiry = 0; // Local storage expiration (in seconds)
+  const expiry = 600; // Local storage expiration (in seconds)
 
   React.useEffect(() => {
     const decoded = decodeURIComponent(params.clientId);
