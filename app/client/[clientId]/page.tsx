@@ -191,8 +191,6 @@ export default function Home({ params }: any) {
     });
   }, [taskData]);
 
-  console.log(Constants.ACTIVE_COLOR, Constants.COMPLETE_COLOR);
-
   return (
     <Nav clientId={clientIdPlain ? clientIdPlain : ""} projectManager={projectManager ? projectManager : ""} title='Project Dashboard'>
       {isLoading ? (
@@ -218,6 +216,7 @@ export default function Home({ params }: any) {
                       accent={Constants.ACTIVE_COLOR}
                       primary={Constants.PRIMARY_COLOR}
                       border={Constants.ACTIVE_COLOR}
+                      textColor="#fff"
                     />
 
                   ))
@@ -240,6 +239,7 @@ export default function Home({ params }: any) {
                     accent={Constants.ACTIVE_COLOR}
                     primary={Constants.PRIMARY_COLOR}
                     border={Constants.COMPLETE_PRIMARY}
+                    textColor="#fff"
                   />
 
                 ))
