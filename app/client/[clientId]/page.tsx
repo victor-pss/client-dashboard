@@ -141,7 +141,7 @@ export default function Home({ params }: any) {
         console.log("folderData - localStorage none");
       }
     }
-  }, [clientIdPlain]);
+  }, [clientIdPlain, expiry]);
 
   React.useEffect(() => {
     if (folderData.length !== 0) {
@@ -179,7 +179,7 @@ export default function Home({ params }: any) {
       });
     }
 
-  }, [folderData]);
+  }, [folderData, expiry]);
 
   React.useEffect(() => {
     taskData.forEach((task: TaskData) => {
@@ -213,6 +213,10 @@ export default function Home({ params }: any) {
                       title={task.title}
                       id={task.id}
                       description={task.description}
+                      accent={Constants.ACTIVE_COLOR}
+                      primary={Constants.PRIMARY_COLOR}
+                      border={Constants.ACTIVE_COLOR}
+                      textColor="#fff"
                     />
 
                   ))
@@ -232,6 +236,10 @@ export default function Home({ params }: any) {
                     title={task.title}
                     id={task.id}
                     description={task.description}
+                    accent={Constants.ACTIVE_COLOR}
+                    primary={Constants.PRIMARY_COLOR}
+                    border={Constants.COMPLETE_PRIMARY}
+                    textColor="#fff"
                   />
 
                 ))
