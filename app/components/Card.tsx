@@ -10,7 +10,7 @@ const Card: React.FC<{ status: string, title: string, id: string, description: s
 
   return (
     <div
-      className="relative flex flex-col bg-clip-border rounded-xl bg-gradient-to-br from-[#802BB1] to-[#0024C0] text-white shadow-gray-500 shadow-md w-full max-w-[40rem] p-8 mb-4">
+      className="relative flex flex-col bg-clip-border rounded-xl bg-gradient-to-br from-[#802BB1] to-[#0024C0] text-white shadow-gray-500 shadow-md w-full max-w-[40rem] 2xl:max-w-full p-8 mb-4">
       <div
         className="relative pb-2 m-0 mb-2 overflow-hidden text-center text-gray-700 bg-transparent border-b rounded-none shadow-none bg-clip-border border-white/30">
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-white uppercase">
