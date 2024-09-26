@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import * as Constants from '../../utils/constants';
 import CryptoJS from 'crypto-js';
 import Card from '../../components/Card';
 import Nav from '../../components/Nav';
@@ -81,7 +82,7 @@ export default function Home({ params }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);                  // Loading state
   const [projectPhase, setProjectPhase] = React.useState<string | null>(null);      // Current project phases based on Wrike folder data
 
-  const expiry = 600; // Local storage expiration (in seconds)
+  const expiry = Constants.EXPIRY; // Local storage expiration (in seconds)
 
   React.useEffect(() => {
     const decoded = decodeURIComponent(params.clientId);
