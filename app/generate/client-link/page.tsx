@@ -58,7 +58,7 @@ export default function Generator() {
               <label htmlFor="clientId" className="block mb-2 text-sm font-medium text-gray-700">Enter Client ID</label>
               <input className='bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5' required defaultValue="" {...register('clientId')} />
             </div>
-            <input className='box-content bg-sky-400 border border-sky-50 rounded-lg p-2.5' type='submit' />
+            <input className='box-content bg-sky-400 border border-sky-50 rounded-lg p-2.5' type='submit' value='Generate'/>
           </form>
 
           <div className="m-auto mt-10 w-6/12">
