@@ -1,15 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 
-interface Props {
-  title: string;
-}
-
-export default function Header(props: Props) {
+export default function Header({pageTitle}: {pageTitle: string} ) {
 
   return (
     <Head>
-      <title>{props.title}</title>
+      <title>{pageTitle}</title>
     </Head>
   )
 }
