@@ -34,17 +34,18 @@ interface FolderData {
   customFields: CustomField[];
 }
 
-function setLocalStorageWithExpiry(key: string, value: string, ttl: number): void {
+function setLocalStorageWithExpiry(key: string, value: string, ttl: number, clientId: string): void {
   const now = new Date();
   const milli = ttl * 1000;
   const item = {
     value: value,
     expiry: now.getTime() + milli,
+    clientID: clientId,
   }
   localStorage.setItem(key, JSON.stringify(item));
 }
 
-function getLocalStorageWithExpiry(key: string): any {
+function getLocalStorageWithExpiry(key: string, clientId: string): any {
   const value = localStorage.getItem(key);
 
   if (!value) {
@@ -64,7 +65,9 @@ function getLocalStorageWithExpiry(key: string): any {
 
   const now = new Date();
 
-  if (now.getTime() >= item.expiry) {
+  console.log('key:', clientId);
+  console.log('item.clientID:', item.clientID);
+  if (now.getTime() >= item.expiry || clientId != item.clientID) {
     localStorage.removeItem(key);
     return null
   }
@@ -120,14 +123,14 @@ export default function Home({ params }: any) {
           const data = await fetchData(url);
           setFolderData(data as FolderData[]);
           console.log('folderData:', data);
-          setLocalStorageWithExpiry("folderData", JSON.stringify(data), expiry);
+          setLocalStorageWithExpiry("folderData", JSON.stringify(data), expiry, clientIdPlain);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
       }
 
       if (localStorage.getItem("folderData") !== null) {
-        let decoded = getLocalStorageWithExpiry("folderData");
+        let decoded = getLocalStorageWithExpiry("folderData", clientIdPlain);
         console.log("folderData:", decoded);
         if (decoded === null) {
           fetchDataAndSetState();
@@ -144,14 +147,14 @@ export default function Home({ params }: any) {
   }, [clientIdPlain, expiry]);
 
   React.useEffect(() => {
-    if (folderData.length !== 0) {
+    if (folderData.length !== 0 && clientIdPlain != null) {
       const getFolderDataAndSetState = async () => {
         const url = process.env.NEXT_PUBLIC_PM_API_HOST + "folders/" + folderData[0].id + "/tasks?access_token=" + process.env.NEXT_PUBLIC_ACCESS_TOKEN + "&fields=['description','customFields']";
 
         try {
           const data = await fetchData(url);
           setTaskData(data as TaskData[]);
-          setLocalStorageWithExpiry("taskData", JSON.stringify(data), expiry);
+          setLocalStorageWithExpiry("taskData", JSON.stringify(data), expiry, clientIdPlain);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -159,7 +162,7 @@ export default function Home({ params }: any) {
       }
 
       if (localStorage.getItem("taskData") !== null) {
-        const decoded = getLocalStorageWithExpiry("taskData");
+        const decoded = getLocalStorageWithExpiry("taskData", clientIdPlain);
         if (decoded === null) {
           getFolderDataAndSetState();
         } else {
