@@ -99,7 +99,7 @@ export default function Home({ params }: any) {
     if (clientId !== null) {
       const secretKey = process.env.NEXT_PUBLIC_SECRET_ENC_KEY;
       if (!secretKey) {
-        throw new Error(`Secret encrytion key is not defined`);
+        throw new Error(`Secret encryption key is not defined`);
       }
       const decrypted = CryptoJS.AES.decrypt(clientId, secretKey);
       // console.log('decoded');
@@ -202,10 +202,10 @@ export default function Home({ params }: any) {
         </div>
       ) : (
 
-        <div className="pt-4 w-8/12 m-auto">
+        <div className="pt-4 w-full sm:w-8/12 m-auto">
           <Pizza progress={projectPhase ? projectPhase : ""} />
-          <div id='tasks' className="flex flex-row gap-4 m-auto mt-2 justify-center">
-            <div className="w-full">
+          <div id='tasks' className="flex flex-col sm:flex-row w-full gap-4 m-auto mt-2 justify-center">
+            <div className="w-3/4 m-auto sm:m-0 sm:w-8/12">
               <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Active Tasks :</p>
               {
                 activeTasks && activeTasks.length > 0 ? (
@@ -229,7 +229,7 @@ export default function Home({ params }: any) {
                 )
               }
             </div >
-            <div className="w-full">
+            <div className="w-3/4 m-auto sm:m-0 sm:w-8/12">
               <p className="text-xl font-semibold text-gray-800 text-center mb-2 w-full">Completed Tasks:</p>
               {completedTasks && completedTasks.length > 0 ? (
                 completedTasks.map((task: TaskData) => (
