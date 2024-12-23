@@ -21,7 +21,7 @@ const Card: React.FC<{
 
   const descriptionString = typeof description === 'string' ? description : '';
 
-  const modifiedDescription = descriptionString.replace(/<a href=/gmi, `<a target="_blank" style={{ color: '${textColor}'}} href=`);
+  const modifiedDescription = descriptionString.replace(/<a href=/gmi, `<a target="_blank" className="text-pretty" style={{ color: '${textColor}'}} href=`);
 
   const sanitizedDescription = DOMPurify.sanitize(modifiedDescription);
 
@@ -42,7 +42,7 @@ const Card: React.FC<{
         </h1>
       </div>
       <div className="p-0">
-        <p className="block font-sans text-base antialiased font-normal leading-relaxed " dangerouslySetInnerHTML={{ __html: sanitizedDescription }}>
+        <p className="block font-sans text-base antialiased font-normal text-pretty overflow-hidden leading-relaxed " dangerouslySetInnerHTML={{ __html: sanitizedDescription }}>
         </p>
       </div>
     </div>
